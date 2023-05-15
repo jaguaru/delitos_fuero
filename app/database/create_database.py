@@ -63,7 +63,7 @@ def check_table_exist(conn, table_name):
         cursor.execute(query)
         #### asignando a una variable el resultado de la consulta
         result = cursor.fetchone()        
-:
+
         #### verificar si la tabla existe, esta vacia o tiene datos
         if result:
             value = True
@@ -72,7 +72,6 @@ def check_table_exist(conn, table_name):
         if not result:
             value = False
             print('.......  La tabla existe y esta vacia!')
-
     
     #### obteniendo la excepcion y guardandola en la variable "error"
     except sqlite3.OperationalError as error:

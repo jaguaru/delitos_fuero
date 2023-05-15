@@ -2,6 +2,7 @@
 ####    modulo para las funciones de leer xlsx, guardar y leer txt, guardar en base de datos,
 ####--------------------------------------------------------------------------------------------------
 import sys
+#### para poder importar el modulo create_database
 sys.path.append('../database')
 
 import pandas as pd
@@ -19,7 +20,6 @@ def change_date_format():
     #### cambiar el formato de la fecha a  May 4th, 2023
     formato_fecha = str(fecha_actual.strftime("%B %d, %Y"))
     return formato_fecha
-
 
 ####--------------------------------------------------------------------------------------------------
 #### funcion para leer el archivo xlsx
@@ -156,7 +156,7 @@ def insert_data(conn_db, table_name, data_list):
 
     except:
         #### hacer rollback con las transacciones si ocurre algun error
-        conn.execute('ROLLBACK')
+        conn_cursor.execute('ROLLBACK')
         print('---- No se pudieron agregar las transacciones!')
         value = False
 

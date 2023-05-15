@@ -1,5 +1,7 @@
 import sys
+#### para poder importar el modulo create_database
 sys.path.append('../database')
+#### para poder importar el modulo queries
 sys.path.append('../query')
 
 from create_database import conn_db, create_table
