@@ -38,7 +38,6 @@ def show_table(conn, table_name):
         #### ejecutando y llamando todos los resultados de la consulta
         cursor.execute(query)
         result = cursor.fetchall()
-        #print('---- result ', result)
     
     #### obteniendo la excepcion y guardandola en la variable "error"
     except sqlite3.OperationalError as error:
@@ -59,41 +58,23 @@ def check_table_exist(conn, table_name):
         cursor = conn.cursor()
         #### creando la consulta con el nombre de la tabla
         query = 'SELECT * FROM ' + str(table_name)
-        #query = "SELECT name FROM sqlite_master WHERE type='table' AND name='delitos'"
 
-        #### ejecutando y llamando todos los resultados de la consulta
+        #### ejecutando y llamando una fila de la consulta
         cursor.execute(query)
-        #result = cursor.fetchall()
-        result = cursor.fetchone()
-        
-        #cursor.ferchone()
-        #print('---- result ', result)
-
-        #if result[0] == 0:
+        #### asignando a una variable el resultado de la consulta
+        result = cursor.fetchone()        
+:
         #### verificar si la tabla existe, esta vacia o tiene datos
         if result:
             value = True
-            #print('---- True!')
             print('.......  La tabla existe y tiene datos!')
         
         if not result:
             value = False
-            #print('---- False!')
             print('.......  La tabla existe y esta vacia!')
 
-
-        #### cerrando el cursor y la conexion a base de datos
-        #cursor.close()
-        #conn.close()
-
-        #### retorna el valor True en caso de que la tabla exista
-        #value = True
-
-        #### enviando un mensaje
-        #print('La tabla existe!')
     
     #### obteniendo la excepcion y guardandola en la variable "error"
-    #except Exception as error:
     except sqlite3.OperationalError as error:
         #### retorna el valor None si hay una excepcion
         value = None
@@ -122,12 +103,13 @@ def create_table(conn, table_name):
         if not table_exist:
             #### eliminar la base de datos "delitos", si existe
             query = 'DROP TABLE IF EXISTS ' + table_name
-            #query = 'DROP TABLE ' + table_name
+            #### ejecutando la consulta
             cursor.execute(query)
+
             message = '.......  Tabla eliminada!'
             print(message)
 
-            #### crear la tabla "delitos"
+            #### crear la tabla "delitos", con los tipos de datos correspondientes
             query = 'CREATE TABLE ' + table_name + ' ' + '''
                                 (id INTEGER PRIMARY KEY,
                                 anio INTEGER,
@@ -139,41 +121,9 @@ def create_table(conn, table_name):
             message = '.......  Tabla creada!'
             print(message)
         
-        #else:
-        #    message = '.......  No se puede eliminar la tabla!'
-        #    print(message)
-        #     #### crear la tabla "delitos"
-        #     query = 'CREATE TABLE ' + table_name + ' ' + '''
-        #                         (id INTEGER PRIMARY KEY,
-        #                         anio INTEGER,
-        #                         fuente TEXT,
-        #                         cve_ent INTEGER,
-        #                         entidad_federativa TEXT,
-        #                         delitos_fuero_comun INTEGER)'''
-        #     cursor.execute(query)
-        #     message = '.......  Tabla creada!'
-        #     print(message)
-        
-        # if table_exist:
-        #    print(' La tabla es TRUE!')
-        #    pass
-        
-        # if table_exist == None:
-        #    print(' La tabla es igual a NONE!')
-
         #### guardar los cambios con un "commit"
         conn.commit()
             
-        #insert_query = 'INSERT INTO ' + table_name + ' (anio, fuente, cve_ent, entidad_federativa, delitos_fuero_comun) VALUES (?, ?, ?, ?, ?)'
-        #values = ('2020', 'INEGI asdfasdfasdfasdf', '1', 'Aguascalientes', '234')
-        #cursor.execute(insert_query, values)
-        #### guardar los cambios con un "commit"
-        #conn.commit()
-
-        #### cerrando el cursor y la conexion a base de datos
-        #cursor.close()
-        #conn.close()
-
         #### retorna el valor True si la tabla de crea de forma exitosa
         value = True
 

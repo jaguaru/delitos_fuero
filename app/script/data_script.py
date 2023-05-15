@@ -34,11 +34,11 @@ if __name__ == '__main__':
     #print('---- read_file ', read_file)
 
     #### asigando el parametro de nombre de tabla y llamando a la funcion para insertar datos
-    #table_name = 'delitos'
     data_insert = insert_data(conn, table_name, read_file)
-    print('---- data_insert ', data_insert)
+    #print('---- data_insert ', data_insert)
 
+    #### llamando a funcion para mostrar los datos guardados
     table = show_table(conn, table_name)
-    print('---- table_show ', table)
+    #print('---- table_show ', table)
 
     print('---- Finalizando insercion de datos!')
