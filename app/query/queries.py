@@ -1,8 +1,10 @@
 ####--------------------------------------------------------------------------------------------------
+####    modulo para las funciones de leer xlsx, guardar y leer txt, guardar en base de datos,
+####--------------------------------------------------------------------------------------------------
 import sys
 sys.path.append('../database')
 
-import sqlite3
+#import sqlite3
 import pandas as pd
 import json
 
@@ -214,6 +216,7 @@ if __name__ == '__main__':
     data_insert = insert_data(conn, table_name, read_file)
     #print('---- data_insert ', data_insert)
 
+    #### llamando a funcion para mostrar la informacion guardada en la base de datos
     table_show = show_table(conn, table_name)
     print('---- table_show ', table_show)
 

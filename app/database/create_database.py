@@ -22,8 +22,6 @@ def conn_db():
         message = '.......  No se pudo crear la base de datos!'
         print(message)
     
-    conn = conn
-
     return conn
 
 ####--------------------------------------------------------------------------------------------------
@@ -69,7 +67,7 @@ def check_table_exist(conn, table_name):
         result = cursor.fetchone()
         
         #cursor.ferchone()
-        print('---- result ', result)
+        #print('---- result ', result)
 
         #if result[0] == 0:
         #### verificar si la tabla existe, esta vacia o tiene datos
@@ -197,7 +195,5 @@ if __name__ == '__main__':
     #### asigando el parametro de nombre de tabla y llamando a la funcion crear tabla
     table_name = 'delitos'
     create = create_table(conn, table_name)
-    #table = show_table(conn, table_name)
-    #print('---- table ', table)
     print('---- Finalizando creacion de base de datos!')
 
